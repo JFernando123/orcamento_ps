@@ -18,7 +18,7 @@ service = ChromeService(chromedriver_path)
 driver = webdriver.Chrome(service=service)
 
 # Navegar até a url
-driver.get("https://virtualstore.pontosys.com/#/configlocal") 
+driver.get("https://virtualstorerc.pontosys.com:4433/") 
 driver.maximize_window()
 
 # Preencher o CNPJ
@@ -95,7 +95,7 @@ driver.execute_script("""
 
 sleep(5)
 # Login do sistema
-usuario_login = driver.find_element(By.NAME, 'input-login')
+usuario_login = driver.find_element(By.NAME,'input-login')
 driver.execute_script("""
     var input = arguments[0];
     input.value = 'elvis@pontosys.com';
