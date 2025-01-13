@@ -176,7 +176,7 @@ text = driver.find_element(By.ID, 'tituloTopo').text
 assert text == "Orçamento"
 
 # Adicionar produto 'Salmão'
-sleep(2)
+sleep(10)
 
 produto_add = driver.find_element(By.XPATH, '/html/body/ion-app/ng-component/ion-nav/page-venda/ion-content/div[2]/div/ion-row/ion-col[1]/autocomplete/ion-item/div[1]/div/ion-input/input')
 driver.execute_script("""
@@ -188,7 +188,7 @@ driver.execute_script("""
 
 produto_add.send_keys(Keys.RETURN)
 
-sleep(2)
+sleep(5)
 
 produto_add.send_keys(Keys.ENTER)
 
