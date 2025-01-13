@@ -10,7 +10,7 @@ Como Tester, você terá um papel fundamental em garantir que nossos produtos at
 
 Você deverá criar um cenário de teste automatizado que simula o seguinte fluxo no site do Virtual Store Web:
 
-1. **Acessar o Virtual Store Web:** [https://virtualstore.pontosys.com:4433](https://virtualstore.pontosys.com:4433).
+1. **Acessar o Virtual Store Web:** [https://virtualstorerc.pontosys.com:4433/](https://virtualstorerc.pontosys.com:4433/).
 2. **Realizar a configuração inicial:**
    - CNPJ: **11.111.111/1111-11**
    - Filial: **3**
