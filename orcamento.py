@@ -103,7 +103,6 @@ driver.execute_script("""
     input.dispatchEvent(new Event('change', { bubbles: true }));
 """, usuario_login)
 
-
 usuario_senha = driver.find_element(By.NAME, 'input-senha')
 driver.execute_script("""
     var input = arguments[0];
@@ -128,13 +127,12 @@ sleep(2)
 try:
     # Aguarde por alguns segundos para verificar se a mensagem aparece
     mensagem = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, 'alert-hdr-0'))
-        
+        EC.presence_of_element_located((By.ID, 'alert-hdr-0'))       
     )
-    
+
     # Verifique se o usuário está logado em outro dispositivo
     if mensagem:
-        print("Mensagem apareceu. Clicando no botão 'Sim'...")
+        print("Mensagem apareceu. Clicando no botão 'Sim'.")
         botao_sim = driver.find_element(By.XPATH, '//button[@class="alert-button alert-button-md btn-opcao-sim alert-button-default alert-button-default-md"]')  
         driver.execute_script("""
             var button = arguments[0];
@@ -186,10 +184,11 @@ driver.execute_script("""
     input.dispatchEvent(new Event('change', { bubbles: true }));
 """, produto_add)
 
+# Depois de informado a descrição do produto, simulando o enter para pesquisar e carregar a lista de produtos
 produto_add.send_keys(Keys.RETURN)
 
 sleep(5)
-
+# Enter novamente para selecionar o primeiro produto da lista carregada
 produto_add.send_keys(Keys.ENTER)
 
 # Adicionar a quantidade
@@ -203,6 +202,7 @@ driver.execute_script("""
 
 sleep(2)
 
+# Enter para adicionar o produto no orçamento
 qtd.send_keys(Keys.ENTER)
 
 sleep(5)
@@ -219,7 +219,6 @@ driver.execute_script("""
 sleep(5)
 
 # Informar o Vendedor "NENHUM".
-
 vendedor = driver.find_element(By.XPATH, '/html/body/ion-app/ion-modal/div/ng-component/ion-content/div[2]/div/ion-row/ion-col[2]/autocomplete/ion-item/div[1]/div/ion-input/input')
 driver.execute_script("""
     var input = arguments[0];
@@ -230,19 +229,30 @@ driver.execute_script("""
 
 vendedor.send_keys(Keys.ENTER)
 
-sleep(2)
+sleep(3)
 
 vendedor.send_keys(Keys.ENTER)
 
+sleep(3)
+
+# Adicionar Cliente "Consumidor".
+cliente = driver.find_element(By.XPATH, '/html/body/ion-app/ion-modal/div/ng-component/ion-content/div[2]/div/ion-row/ion-col[3]/autocomplete/ion-item/div[1]/div/ion-input/input')
+driver.execute_script("""
+    var input = arguments[0];
+    input.value = 'Consumidor';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+""", cliente)
+
+cliente.send_keys(Keys.ENTER)
+
 sleep(2)
 
-# Manter o Cliente "Consumidor".
+cliente.send_keys(Keys.ENTER)
 
-#cliente_selecionado = driver.find_element(By.XPATH, '/html/body/ion-app/ion-modal/div/ng-component/ion-content/div[2]/div/ion-row/ion-col[3]/autocomplete/ion-item/div[1]/div/ion-input/input').text
-#assert text == "1 - CONSUMIDOR"
+sleep(2)
 
 # Clicar em continuar para finalizar o orçamento.
-
 btn_continuar = driver.find_element(By.XPATH, '/html/body/ion-app/ion-modal/div/ng-component/ion-content/div[2]/ion-row[2]/ion-col/div/button')
 driver.execute_script("""
     var button = arguments[0];
@@ -263,9 +273,10 @@ driver.execute_script("""
     button.click();
     """, btn_voltar)
 
-sleep(5)
-
 # Aguardar voltar para a tela inicial do Orçamento e aguardar limpar todos os dados da tela para finalizar o teste.
+sleep(15)
 
-# Timer para a tela ficar aberta
-sleep(6000)
+print('Testes Finalizados!')
+
+driver.close()
+driver.quit()
