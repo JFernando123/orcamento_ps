@@ -17,7 +17,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 ## Instalações
 
 ### Python
-Python Utilizado 3.9.5 - https://www.python.org/downloads/release/python-395/
+Python Utilizado 3.13.1 - https://www.python.org/downloads/release/python-395/
 
 Obs.: Compatível com mais novos
 
